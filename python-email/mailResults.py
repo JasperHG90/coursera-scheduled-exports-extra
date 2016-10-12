@@ -57,20 +57,25 @@ class mailresults:
     '''
 
     def ss_data(self,df):
-        to_date = datetime.datetime.now()
-        from_date = to_date - datetime.timedelta(days=7)
-        # Filter for dates
-        return df.ix[from_date:to_date, 0]
+        tn = datetime.datetime.now().strftime("%Y-%m-%d")
+        tt = (datetime.datetime.now() - datetime.timedelta(days=6)).strftime("%Y-%m-%d")
+        # Index
+        df = df[(df['date'] >= tt) & (df['date'] <= tn)]
+        # Get stats
+        lendf = len(df.ind)
+        successful_requests = sum(df.ix[:, 1] == "SUCCESS")
+        failed_requests = lendf - successful_requests
+        # Return metadata
+        m = {"from":tt, "to":tn, "number_requests":lendf, "success":successful_requests, "failed":failed_requests}
+        return m
 
     '''
-    Read metadata.txt file
+    Read metadata.txt file and process
     '''
 
     def read_metadata(self):
         with open(self.location, 'r') as inFile:
-            return self.ss_data(pd.read_table(inFile))
-
-
+            return self.ss_data(pd.read_table(inFile, header=None))
 
 '''
 Call
