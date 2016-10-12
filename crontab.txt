@@ -9,10 +9,10 @@
 
 # Run first of every month --> for cleaning of tables
 # NOTE: I use this to ensure that I only have the two latest downloads for each course.
-#0 0 1 * * /home/Jasper/anaconda/bin/python /home/Jasper/coursera-scheduled-exports-extra/python-clean/clean.py '/home/Jasper/tmp/gcs-bucket/'
+# 0 0 1 * * /home/Jasper/anaconda/bin/python /home/Jasper/coursera-scheduled-exports-extra/python-clean/clean.py '/home/Jasper/tmp/gcs-bucket/'
 
 # Mount a google storage bucket at startup.
 # @reboot gcsfuse mooc-data /home/Jasper/tmp/gcs-bucket/
 
 # Email results of 'metadata.txt' on Mondays
-#
+# 0 1 * * 1 /home/Jasper/anaconda/bin/python /home/Jasper/coursera-scheduled-exports-extra/python-email/mailResults.py '<add-gmail-account>' '<add-gmail-password>' '<add-recipient>' '/home/Jasper/tmp/gcs-bucket/metadata.txt'
