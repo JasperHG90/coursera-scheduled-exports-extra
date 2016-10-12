@@ -46,7 +46,6 @@ class mailresults:
         self.from_email = from_email
         self.to_email = to_email
         self.location = location
-        self.time_now = datetime.datetime.now()
 
         self.from_email
 
@@ -59,7 +58,17 @@ class mailresults:
 
     def read_metadata(self):
         with open(self.location, 'r') as inFile:
-            return pd.read_table(inFile)
+            return ss_data(pd.read_table(inFile))
+
+    '''
+    Subset data
+    '''
+    @classmethod
+    def ss_data(df):
+        to_date = datetime.datetime.now()
+        from_date = to_date - timedelta(days=7)
+        # Filter for dates
+        return df.ix[from_date:to_date, 0]
 
 '''
 Call
