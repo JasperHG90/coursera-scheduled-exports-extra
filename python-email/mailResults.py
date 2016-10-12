@@ -93,7 +93,7 @@ class mailresults:
         cwd = os.getcwd()
         if not os.path.exists("{}/.temp/".format(cwd)):
             os.makedirs("{}/.temp/".format(cwd))
-        df.to_table("{}/.temp/logfile.txt".format(cwd))
+        df.to_csv("{}/.temp/logfile.txt".format(cwd), sep="\t")
 
     '''
     Read metadata.txt file and process
