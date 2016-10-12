@@ -53,14 +53,6 @@ class mailresults:
         self.yag = yagmail.SMTP(from_email, password)
 
     '''
-    Read metadata.txt file
-    '''
-
-    def read_metadata(self):
-        with open(self.location, 'r') as inFile:
-            return ss_data(pd.read_table(inFile))
-
-    '''
     Subset data
     '''
     @classmethod
@@ -69,6 +61,16 @@ class mailresults:
         from_date = to_date - timedelta(days=7)
         # Filter for dates
         return df.ix[from_date:to_date, 0]
+
+    '''
+    Read metadata.txt file
+    '''
+
+    def read_metadata(self):
+        with open(self.location, 'r') as inFile:
+            return ss_data(pd.read_table(inFile))
+
+
 
 '''
 Call
