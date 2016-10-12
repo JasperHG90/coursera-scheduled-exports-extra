@@ -60,7 +60,7 @@ class mailresults:
         tn = datetime.datetime.now().strftime("%Y-%m-%d")
         tt = (datetime.datetime.now() - datetime.timedelta(days=6)).strftime("%Y-%m-%d")
         # Add date
-        df['date'] = df.ind[:,0].map(lambda x: x.split(" ")[0])
+        df['date'] = df.ix[:,0].map(lambda x: x.split(" ")[0])
         # Index
         df = df[(df['date'] >= tt) & (df['date'] <= tn)]
         # Get stats
