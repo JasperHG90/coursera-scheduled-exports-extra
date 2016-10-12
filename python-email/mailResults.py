@@ -152,6 +152,6 @@ if __name__=="__main__":
     if args.send_log != None:
         m.read_logfile(args.send_log)
     # Send email
-    #m.send_email(df)
+    m.send_email(df)
 
     print True
