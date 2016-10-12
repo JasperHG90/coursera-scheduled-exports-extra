@@ -50,16 +50,16 @@ class mailresults:
 
         print self.from_email
 
-    # Authenticate with yagmail
-    self.yag = yagmail.SMTP(from_email)
+        # Authenticate with yagmail
+        self.yag = yagmail.SMTP(from_email)
 
-    '''
-    Read metadata.txt file
-    '''
+        '''
+        Read metadata.txt file
+        '''
 
-    def read_metadata(self):
-        with open(self.location, 'r') as inFile:
-            return pd.read_table(inFile)
+        def read_metadata(self):
+            with open(self.location, 'r') as inFile:
+                return pd.read_table(inFile)
 
 '''
 Call
