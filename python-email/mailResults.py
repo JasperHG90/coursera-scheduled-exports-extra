@@ -108,7 +108,7 @@ class mailresults:
     '''
 
     def read_logfile(self, loglocation):
-        with open(self.loglocation, 'r') as inFile:
+        with open(loglocation, 'r') as inFile:
             self.dump_logfile(self.ss_data(pd.read_table(inFile, header=None)))
 
     '''
