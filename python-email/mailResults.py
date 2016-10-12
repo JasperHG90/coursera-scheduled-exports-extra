@@ -55,7 +55,7 @@ class mailresults:
     '''
     Subset data
     '''
-    @staticmethod
+
     def ss_data(df):
         to_date = datetime.datetime.now()
         from_date = to_date - timedelta(days=7)
@@ -68,7 +68,7 @@ class mailresults:
 
     def read_metadata(self):
         with open(self.location, 'r') as inFile:
-            return ss_data(pd.read_table(inFile))
+            return self.ss_data(pd.read_table(inFile))
 
 
 
