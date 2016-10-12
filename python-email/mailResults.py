@@ -59,6 +59,8 @@ class mailresults:
     def ss_data(self,df):
         tn = datetime.datetime.now().strftime("%Y-%m-%d")
         tt = (datetime.datetime.now() - datetime.timedelta(days=6)).strftime("%Y-%m-%d")
+        self.tn = tn
+        self.tt = tt
         # Add date
         df['date'] = df.ix[:,0].map(lambda x: x.split(" ")[0])
         # Index
@@ -75,7 +77,7 @@ class mailresults:
         successful_requests = sum(df.ix[:, 1] == "SUCCESS")
         failed_requests = lendf - successful_requests
         # Return metadata
-        m = {"from":tt, "to":tn, "number_requests":lendf, "success":successful_requests, "failed":failed_requests}
+        m = {"from":self.tt, "to":self.tn, "number_requests":lendf, "success":successful_requests, "failed":failed_requests}
         # Dump file temporary so can mail it.
         cwd = os.getcwd()
         if not os.path.exists("{}/.temp/".format(cwd)):
