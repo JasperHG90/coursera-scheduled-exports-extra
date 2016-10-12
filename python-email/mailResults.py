@@ -51,7 +51,7 @@ class mailresults:
         self.from_email
 
         # Authenticate with yagmail
-        self.yag = yagmail.SMTP(from_email)
+        self.yag = yagmail.SMTP(from_email, password)
 
     '''
     Read metadata.txt file
