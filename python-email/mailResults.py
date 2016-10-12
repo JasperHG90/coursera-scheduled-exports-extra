@@ -74,7 +74,7 @@ if __name__=="__main__":
     args = parser.parse_args()
 
     # Check if file exists
-    if not os.file.exist(args.location):
+    if not os.path.isfile(args.location):
         raise filenotfound("File does not exists in this location.")
 
     # Initiate
