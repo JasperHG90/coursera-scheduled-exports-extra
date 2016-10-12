@@ -91,7 +91,7 @@ class mailresults:
     def send_email(self, meta):
         subject = "Scheduled coursera data exports: status report for {} to {}.".format(meta["from"], meta["to"])
         content = "From {} to {}, {} requests were submitted to the coursera API. {} requests succeeded, {} requests failed. You can find an overview of the requests in the attached 'metadata.txt' file.".format(meta["from"], meta["to"], meta["number_requests"], meta["success"], meta["failed"])
-        metadatafile = "{}/.temp/metadata.csv".format(cwd)
+        metadatafile = "{}/.temp/metadata.csv".format(os.getcwd())
 
         self.yag.send(to=self.to_email, subject=subject, contents=[content, metadatafile])
 
