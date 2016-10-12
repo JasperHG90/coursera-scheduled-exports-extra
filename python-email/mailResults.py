@@ -93,7 +93,7 @@ class mailresults:
         content = "From {} to {}, {} requests were submitted to the coursera API. {} requests succeeded, {} requests failed. You can find an overview of the requests in the attached 'metadata.txt' file.".format(meta["from"], meta["to"], meta["number_requests"], meta["success"], meta["failed"])
         metadatafile = "{}/.temp/metadata.csv".format(os.getcwd())
 
-        self.yag.send(to=self.to_email, subject=subject, contents=content)
+        self.yag.send(to=self.to_email, subject=subject, contents=[content, metadatafile])
 
 '''
 Call
