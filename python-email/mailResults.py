@@ -117,6 +117,6 @@ if __name__=="__main__":
     # Read file
     df = m.read_metadata()
     # Send email
-    m.mailresults(df)
+    m.send_email(df)
 
     print True
