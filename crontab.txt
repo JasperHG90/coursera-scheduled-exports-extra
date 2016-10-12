@@ -15,4 +15,4 @@
 # @reboot gcsfuse mooc-data /home/Jasper/tmp/gcs-bucket/
 
 # Email results of 'metadata.txt' on Mondays
-# 0 1 * * 1 /home/Jasper/anaconda/bin/python /home/Jasper/coursera-scheduled-exports-extra/python-email/mailResults.py '<add-gmail-account>' '<add-gmail-password>' '<add-recipient>' '/home/Jasper/tmp/gcs-bucket/metadata.txt'
+# 0 1 * * 1 /home/Jasper/anaconda/bin/python /home/Jasper/coursera-scheduled-exports-extra/python-email/mailResults.py '<add-gmail-account>' '<add-gmail-password>' '<add-recipient>' '/home/Jasper/tmp/gcs-bucket/metadata.txt'  --send_log '/home/Jasper/tmp/gcs-bucket/scheduled_downloads.log'
