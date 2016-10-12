@@ -64,6 +64,7 @@ class mailresults:
         # Index
         df = df[(df['date'] >= tt) & (df['date'] <= tn)]
         # Get stats
+        print df
         lendf = len(df.ix)
         successful_requests = sum(df.ix[:, 1] == "SUCCESS")
         failed_requests = lendf - successful_requests
