@@ -90,7 +90,7 @@ class mailresults:
     '''
 
     def dump_logfile(self,df):
-        wd = os.getcwd()
+        cwd = os.getcwd()
         if not os.path.exists("{}/.temp/".format(cwd)):
             os.makedirs("{}/.temp/".format(cwd))
         df.to_csv("{}/.temp/logfile.csv".format(cwd))
