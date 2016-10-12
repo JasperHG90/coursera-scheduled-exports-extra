@@ -116,4 +116,7 @@ if __name__=="__main__":
     m = mailresults(args.from_email, args.password, args.to_email, args.location)
     # Read file
     df = m.read_metadata()
-    print df
+    # Send email
+    m.mailresults(df)
+
+    print True
