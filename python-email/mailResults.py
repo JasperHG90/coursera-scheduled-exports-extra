@@ -48,7 +48,7 @@ class mailresults:
         self.location = location
         self.time_now = datetime.datetime.now()
 
-        print self.from_email
+        self.from_email
 
         # Authenticate with yagmail
         self.yag = yagmail.SMTP(from_email)
@@ -81,3 +81,4 @@ if __name__=="__main__":
     m = mailresults(args.from_email, args.to_email, args.location)
     # Read file
     df = m.read_metadata()
+    print df
