@@ -58,7 +58,7 @@ class mailresults:
 
     def ss_data(self,df):
         to_date = datetime.datetime.now()
-        from_date = to_date - timedelta(days=7)
+        from_date = to_date - datetime.timedelta(days=7)
         # Filter for dates
         return df.ix[from_date:to_date, 0]
 
