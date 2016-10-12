@@ -69,6 +69,11 @@ class mailresults:
         failed_requests = lendf - successful_requests
         # Return metadata
         m = {"from":tt, "to":tn, "number_requests":lendf, "success":successful_requests, "failed":failed_requests}
+        # Dump file temporary so can mail it.
+        cwd = os.getcwd()
+        if not os.path.exists("{}/.temp/".format(cwd)):
+            os.makedirs("{}/.temp/".format(cwd))
+        df.to_csv("{}/.temp/metadata.csv".format(cwd))
         return m
 
     '''
@@ -78,6 +83,15 @@ class mailresults:
     def read_metadata(self):
         with open(self.location, 'r') as inFile:
             return self.ss_data(pd.read_table(inFile, header=None))
+
+    '''
+    Send email
+    '''
+
+    def send_email(self, metadata):
+        subject = "Scheduled coursera data exports: status report for {} to {}.".format(meta["from"], meta["to"])
+        content = "From {} to {}, {} requests were submitted to the coursera API. {} requests succeeded, {} requests failed. You can find an overview of the requests in the attached 'metadata.txt' file.".format(meta["from"], meta["to"], meta["number_requests"], meta["success"], meta["failed"])
+        metadatafile = ""
 
 '''
 Call
