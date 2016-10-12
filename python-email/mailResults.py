@@ -93,7 +93,7 @@ class mailresults:
         cwd = os.getcwd()
         if not os.path.exists("{}/.temp/".format(cwd)):
             os.makedirs("{}/.temp/".format(cwd))
-        df.to_csv("{}/.temp/logfile.csv".format(cwd))
+        df.to_table("{}/.temp/logfile.txt".format(cwd))
 
     '''
     Read metadata.txt file and process
@@ -117,9 +117,9 @@ class mailresults:
 
     def send_email(self, meta):
         subject = "Scheduled coursera data exports: status report for {} to {}.".format(meta["from"], meta["to"])
-        content = "From {} to {}, {} requests were submitted to the coursera API. {} requests succeeded, {} requests failed. You can find an overview of the requests in the attached 'metadata.txt' file.".format(meta["from"], meta["to"], meta["number_requests"], meta["success"], meta["failed"])
+        content = "From {} to {}, {} requests were submitted to the coursera API. {} requests succeeded, {} requests failed. You can find an overview of the requests in the attached 'metadata.csv' file. You can trace potential errors in the attached 'log.csv' file.".format(meta["from"], meta["to"], meta["number_requests"], meta["success"], meta["failed"])
         metadatafile = "{}/.temp/metadata.csv".format(os.getcwd())
-        logdatafile = "{}/.temp/logfile.csv".format(os.getcwd())
+        logdatafile = "{}/.temp/logfile.txt".format(os.getcwd())
 
         if args.send_log != None:
             self.yag.send(to=self.to_email, subject=subject, contents=[content, metadatafile, logdatafile])
