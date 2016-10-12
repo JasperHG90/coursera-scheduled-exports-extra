@@ -48,6 +48,8 @@ class mailresults:
         self.location = location
         self.time_now = datetime.datetime.now()
 
+        print self.from_email
+
     # Authenticate with yagmail
     self.yag = yagmail.SMTP(from_email)
 
