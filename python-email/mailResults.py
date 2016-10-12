@@ -55,7 +55,7 @@ class mailresults:
     '''
     Subset data
     '''
-    @classmethod
+    @staticmethod
     def ss_data(df):
         to_date = datetime.datetime.now()
         from_date = to_date - timedelta(days=7)
