@@ -150,8 +150,8 @@ if __name__=="__main__":
     # Read file
     df = m.read_metadata()
     # Dump log
-    if args.send_log != None:
-        m.read_logfile(args.send_log)
+    #if args.send_log != None:
+        #m.read_logfile(args.send_log)
     # Send email
     m.send_email(df)
 
