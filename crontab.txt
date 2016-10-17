@@ -1,18 +1,21 @@
 # Crontab jobs
 
-# Run every 2 weeks on Friday --> for tables
+# Run every 2 weeks on Friday at 1AM --> for tables
 # TODO: Add "expr `date +\%s` / 604800 \% 2 >/dev/null ||""  for every 2 weeks
 0 1 * * 5 /home/Jasper/anaconda/bin/python /home/Jasper/coursera-scheduled-exports/call.py 'tables' '/home/Jasper/tmp/gcs-bucket/courses.txt' '/home/Jasper/tmp/gcs-bucket/' --save_metadata --log
 
-# Run every week on Sunday --> for clickstreams
-0 1 * * 0 /home/Jasper/anaconda/bin/python /home/Jasper/coursera-scheduled-exports/call.py 'clickstream' '/home/Jasper/tmp/gcs-bucket/courses.txt' '/home/Jasper/tmp/gcs-bucket/' --save_metadata --log
+# Run every week on Monday at 9AM --> for clickstreams
+0 9 * * 1 /home/Jasper/anaconda/bin/python /home/Jasper/coursera-scheduled-exports/call.py 'clickstream' '/home/Jasper/tmp/gcs-bucket/courses.txt' '/home/Jasper/tmp/gcs-bucket/' --save_metadata --log
 
-# Run first of every month --> for cleaning of tables
+# Run first of every month at 12PM --> for cleaning of tables
 # NOTE: I use this to ensure that I only have the two latest downloads for each course.
 # 0 0 1 * * /home/Jasper/anaconda/bin/python /home/Jasper/coursera-scheduled-exports-extra/python-clean/clean.py '/home/Jasper/tmp/gcs-bucket/'
 
 # Mount a google storage bucket at startup.
 # @reboot gcsfuse mooc-data /home/Jasper/tmp/gcs-bucket/
 
-# Email results of 'metadata.txt' on Mondays
-# 0 1 * * 1 /home/Jasper/anaconda/bin/python /home/Jasper/coursera-scheduled-exports-extra/python-email/mailResults.py '<add-gmail-account>' '<add-gmail-password>' '<add-recipient>' '/home/Jasper/tmp/gcs-bucket/metadata.txt'  --send_log '/home/Jasper/tmp/gcs-bucket/scheduled_downloads.log'
+# Email results of 'metadata.txt' on Mondays at 8AM
+# 0 8 * * 1 /home/Jasper/anaconda/bin/python /home/Jasper/coursera-scheduled-exports-extra/python-email/mailResults.py '<add-gmail-account>' '<add-gmail-password>' '<add-recipient>' '/home/Jasper/tmp/gcs-bucket/metadata.txt'  --send_log '/home/Jasper/tmp/gcs-bucket/scheduled_downloads.log'
+
+# Remove log every week at 8:30AM
+# 30 8 * * 1 rm /home/Jasper/tmp/gcs-bucket/scheduled_downloads.log
