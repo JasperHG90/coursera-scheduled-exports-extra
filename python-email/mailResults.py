@@ -46,6 +46,7 @@ class mailresults:
         self.from_email = from_email
         self.to_email = to_email
         self.location = location
+        self.loglocation = log_location
 
         self.from_email
 
@@ -119,7 +120,7 @@ class mailresults:
         subject = "Scheduled coursera data exports: status report for {} to {}.".format(meta["from"], meta["to"])
         content = "From {} to {}, {} requests were submitted to the coursera API. {} requests succeeded, {} requests failed. You can find an overview of the requests in the attached 'metadata.csv' file. You can trace potential errors in the attached 'log.csv' file.".format(meta["from"], meta["to"], meta["number_requests"], meta["success"], meta["failed"])
         metadatafile = "{}/.temp/metadata.csv".format(os.getcwd())
-        logdatafile = "{}/.temp/logfile.txt".format(os.getcwd())
+        logdatafile = self.loglocation #"{}/.temp/logfile.txt".format(os.getcwd())
 
         if args.send_log != None:
             self.yag.send(to=self.to_email, subject=subject, contents=[content, metadatafile, logdatafile])
